@@ -1,10 +1,10 @@
 export const mongoConfig = {
-  user: "",
-  pass: "",
-  name: "",
-  host: "",
+  user: '',
+  pass: '',
+  name: '',
+  host: '',
   port: 3000,
-  getLink: function() {
+  getLink() {
     return `mongodb://${this.user}:${this.pass}@${this.host}:${this.port}/${this.name}`;
   }
 };

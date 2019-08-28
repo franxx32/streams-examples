@@ -1,3 +1,5 @@
 export class ServiceController {
-  public create() {}
+  public create() {
+    return 1;
+  }
 }
