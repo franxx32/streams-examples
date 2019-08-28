@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*", "dbconfig.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
