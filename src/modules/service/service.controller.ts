@@ -4,6 +4,7 @@ import * as util from 'util';
 import { Request, Response } from 'express';
 import { IRequestWithService } from '../../interfaces/httpInterfaces';
 import { StreamFactory } from '../../streams/streamFactory';
+const pipeline = util.promisify(stream.pipeline);
 
 export class ServiceController {
   public async create(req: Request, res: Response) {
@@ -15,7 +16,6 @@ export class ServiceController {
 
   public async convert(req: IRequestWithService, res: Response) {
     const { service } = req;
-    const pipeline = util.promisify(stream.pipeline);
     const streamFactory = new StreamFactory();
     const transformStreams = streamFactory.getStreamsChain(service.tasks);
     const streams = [req, ...transformStreams, res];

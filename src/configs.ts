@@ -1,4 +1,4 @@
-import { scryptSync, createDecipheriv } from 'crypto';
+import { scryptSync } from 'crypto';
 
 export const cryptoConfig = {
   algorithm: 'aes-192-cbc',
