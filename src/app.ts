@@ -1,8 +1,12 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import { ServiceRouter } from './modules/service/service.router';
+import { routerErrorHandler } from './errors/errorsHandlerMiddleware';
+import 'express-async-errors';
 
 export class App {
   private app: express.Application;
+  private serviceRouter = new ServiceRouter();
 
   constructor(port?: number) {
     this.app = express();
@@ -20,6 +24,8 @@ export class App {
     this.app.get('/', (r, s) => {
       s.send('Hello world');
     });
+    this.app.use('/services', this.serviceRouter.router);
+    this.app.use(routerErrorHandler);
   }
 
   get port() {
