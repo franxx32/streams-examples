@@ -18,6 +18,7 @@ export class App {
   private config() {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.raw());
   }
 
   private routes() {

@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import { ServiceController } from './service.controller';
-import { serviceCreateValidator } from './service.validator';
+import {
+  serviceCreateValidator,
+  serviceConvertValidator
+} from './service.validator';
 
 export class ServiceRouter {
   private r: Router;
@@ -13,6 +16,11 @@ export class ServiceRouter {
 
   private routes() {
     this.r.post('/', serviceCreateValidator, this.serviceController.create);
+    this.r.post(
+      '/:name',
+      serviceConvertValidator,
+      this.serviceController.convert
+    );
   }
 
   get router() {
