@@ -1,21 +1,29 @@
-import { ToLowerCaseStream } from './toLowerCase.stream';
+import { TextEditorStream } from './textEditor.stream';
 export class StreamFactory {
   private streams = {
-    toLowerCase: ToLowerCaseStream
+    toLowerCase: {
+      stream: TextEditorStream,
+      args: ['toLowerCase']
+    },
+    toUpperCase: {
+      stream: TextEditorStream,
+      args: ['toUpperCase']
+    },
+    removeSpaces: {
+      stream: TextEditorStream,
+      args: ['removeSpaces']
+    }
   };
 
   public getStream(name: string) {
-    const streamClass = this.streams[name];
-    const stream = new streamClass();
+    const streamObj = this.streams[name];
+    const streamClass = streamObj.stream;
+    const stream = new streamClass({}, ...streamObj.args);
     return stream;
   }
 
   public getStreamsChain(names: string[]) {
-    const streams = names.map(streamName => {
-      const streamClass = this.streams[streamName];
-      const stream = new streamClass();
-      return stream;
-    });
+    const streams = names.map(streamName => this.getStream(streamName));
     return streams;
   }
 }
