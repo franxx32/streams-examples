@@ -22,8 +22,8 @@ export class App {
   }
 
   private routes() {
-    this.app.get('/', (r, s) => {
-      s.send('Hello world');
+    this.app.get('/ping', (req, res) => {
+      res.send('pong');
     });
     this.app.use('/services', this.serviceRouter.router);
     this.app.use(routerErrorHandler);
