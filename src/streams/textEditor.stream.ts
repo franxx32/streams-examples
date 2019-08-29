@@ -2,6 +2,10 @@ import { Transform } from 'stream';
 import { StringDecoder } from 'string_decoder';
 import { TextEditor } from '../helpers/textEditor';
 
+export function createTextEditorStream(editMethodName: string) {
+  return new TextEditorStream({}, editMethodName);
+}
+
 export class TextEditorStream extends Transform {
   private editMethodName: string;
   private utfDecoder = new StringDecoder('utf-8');

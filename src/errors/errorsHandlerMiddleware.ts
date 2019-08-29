@@ -6,5 +6,5 @@ export const routerErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(err.httpCode).json({ errors: err.message });
+  res.status(err.httpCode || 500).json({ errors: err.message });
 };

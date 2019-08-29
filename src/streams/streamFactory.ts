@@ -1,29 +1,40 @@
-import { TextEditorStream } from './textEditor.stream';
-export class StreamFactory {
-  private streams = {
-    toLowerCase: {
-      stream: TextEditorStream,
-      args: ['toLowerCase']
-    },
-    toUpperCase: {
-      stream: TextEditorStream,
-      args: ['toUpperCase']
-    },
-    removeSpaces: {
-      stream: TextEditorStream,
-      args: ['removeSpaces']
-    }
-  };
+import { createTextEditorStream } from './textEditor.stream';
+import { createCipheriv, createDecipheriv } from 'crypto';
+import { cryptoConfig } from '../configs';
 
+const streams = {
+  toLowerCase: {
+    stream: createTextEditorStream,
+    args: ['toLowerCase']
+  },
+  toUpperCase: {
+    stream: createTextEditorStream,
+    args: ['toUpperCase']
+  },
+  removeSpaces: {
+    stream: createTextEditorStream,
+    args: ['removeSpaces']
+  },
+  encrypt: {
+    stream: createCipheriv,
+    args: [cryptoConfig.algorithm, cryptoConfig.key, cryptoConfig.iv]
+  },
+  decrypt: {
+    stream: createDecipheriv,
+    args: [cryptoConfig.algorithm, cryptoConfig.key, cryptoConfig.iv]
+  }
+};
+
+export class StreamFactory {
   public getStream(name: string) {
-    const streamObj = this.streams[name];
-    const streamClass = streamObj.stream;
-    const stream = new streamClass({}, ...streamObj.args);
+    const streamObj = streams[name];
+    const streamFunc = streamObj.stream;
+    const stream = streamFunc.call(this, ...streamObj.args);
     return stream;
   }
 
   public getStreamsChain(names: string[]) {
-    const streams = names.map(streamName => this.getStream(streamName));
-    return streams;
+    const streamsChain = names.map(streamName => this.getStream(streamName));
+    return streamsChain;
   }
 }

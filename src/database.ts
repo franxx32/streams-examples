@@ -3,7 +3,10 @@ import { mongoConfig } from '../dbconfig';
 export class Database {
   public connect() {
     return new Promise((res, rej) => {
-      mongoose.connect(mongoConfig.getLink(), { useNewUrlParser: true });
+      mongoose.connect(mongoConfig.getLink(), {
+        useNewUrlParser: true,
+        useCreateIndex: true
+      });
       const db = mongoose.connection;
 
       db.on('error', error => {

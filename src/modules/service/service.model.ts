@@ -8,7 +8,9 @@ export interface IService extends Document {
 export enum ServiceTask {
   removeSpaces = 'removeSpaces',
   toLowerCase = 'toLowerCase',
-  toUpperCase = 'toUpperCase'
+  toUpperCase = 'toUpperCase',
+  encrypt = 'encrypt',
+  decrypt = 'decrypt'
 }
 
 const ServiceSchema: Schema = new Schema({

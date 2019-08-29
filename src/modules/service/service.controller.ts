@@ -17,10 +17,6 @@ export class ServiceController {
     const { service } = req;
     const pipeline = util.promisify(stream.pipeline);
     const streamFactory = new StreamFactory();
-    // req.on('data', data => {
-    //   console.log(data);
-    //   console.log('-----------------');
-    // });
     const transformStreams = streamFactory.getStreamsChain(service.tasks);
     const streams = [req, ...transformStreams, res];
     await pipeline.call(this, streams);
