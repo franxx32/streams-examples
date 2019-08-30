@@ -10,7 +10,9 @@ export enum ServiceTask {
   toLowerCase = 'toLowerCase',
   toUpperCase = 'toUpperCase',
   encrypt = 'encrypt',
-  decrypt = 'decrypt'
+  decrypt = 'decrypt',
+  zip = 'zip',
+  unzip = 'unzip'
 }
 
 const ServiceSchema: Schema = new Schema({

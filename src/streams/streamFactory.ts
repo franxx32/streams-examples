@@ -1,5 +1,7 @@
 import { createTextEditorStream } from './textEditor.stream';
 import { createCipheriv, createDecipheriv } from 'crypto';
+import { createGzip, createGunzip } from 'zlib';
+
 import { cryptoConfig } from '../configs';
 
 const streams = {
@@ -22,6 +24,14 @@ const streams = {
   decrypt: {
     stream: createDecipheriv,
     args: [cryptoConfig.algorithm, cryptoConfig.key, cryptoConfig.iv]
+  },
+  zip: {
+    stream: createGzip,
+    args: []
+  },
+  unzip: {
+    stream: createGunzip,
+    args: []
   }
 };
 
