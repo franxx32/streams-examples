@@ -19,6 +19,7 @@ export class ServiceController {
     const streamFactory = new StreamFactory();
     const transformStreams = streamFactory.getStreamsChain(service.tasks);
     const streams = [req, ...transformStreams, res];
+    await Service.increaseTimesUsed(service._id);
     await pipeline.call(this, streams);
     res.status(200);
   }
