@@ -33,14 +33,10 @@ const ServiceSchema: Schema = new Schema({
 });
 
 ServiceSchema.statics.increaseTimesUsed = async function(id: string) {
-  const session = await startSession();
-  session.startTransaction();
   const updatedModel = await this.updateOne(
     { _id: id },
     { $inc: { timesUsed: 1 } }
   );
-  await session.commitTransaction();
-  session.endSession();
   return updatedModel;
 };
 
