@@ -14,7 +14,10 @@ export const serviceCreateValidator = async (
   const { body } = req;
   const schema = Joi.object().keys({
     name: Joi.string().required(),
-    tasks: Joi.array().items(Object.keys(ServiceTask))
+    tasks: Joi.array()
+      .items(Object.keys(ServiceTask))
+      .min(1)
+      .unique()
   });
 
   checkValidatorErrors(body, schema);

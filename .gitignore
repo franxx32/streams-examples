@@ -4,4 +4,4 @@ dist
 dbconfig.ts
 https
 Files
-env
+.env*

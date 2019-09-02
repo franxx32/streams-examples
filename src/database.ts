@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { mongoConfig } from '../dbconfig';
+import { logError, logMessage } from './utils';
 export class Database {
   public connect() {
     return new Promise((res, rej) => {
@@ -10,12 +10,19 @@ export class Database {
       const db = mongoose.connection;
 
       db.on('error', error => {
+        logError(error);
         rej(error);
       });
 
       db.once('open', () => {
-        res('Connected to MongoDB!');
+        const message = 'Connected to MongoDB!';
+        logMessage(message);
+        res(message);
       });
     });
+  }
+
+  public async disconnect() {
+    await mongoose.connection.close();
   }
 }
