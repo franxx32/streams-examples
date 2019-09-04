@@ -17,7 +17,6 @@ export const serviceCreateValidator = async (
     tasks: Joi.array()
       .items(Object.keys(ServiceTask))
       .min(1)
-      .unique()
   });
 
   checkValidatorErrors(body, schema);

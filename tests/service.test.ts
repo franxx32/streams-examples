@@ -49,11 +49,6 @@ test('Failed service creation with empty array', async t => {
   t.truthy(service.errors);
 });
 
-test('Failed service creation with un-unique task', async t => {
-  const service = await createService('XX32', ['toLowerCase', 'toLowerCase']);
-  t.truthy(service.errors);
-});
-
 test('Success service convert', async t => {
   const service = await createService('XX32', [
     'toLowerCase',
