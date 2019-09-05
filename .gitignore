@@ -6,3 +6,5 @@ https
 Files
 .env
 .env.*
+report
+.jscpd

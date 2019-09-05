@@ -1,7 +1,7 @@
 {
   "watch": ["src"],
   "ext": "ts,tsx",
-  "exec": "NODE_ENV=dev ts-node ./src/index.ts",
+  "exec": "ts-node ./src/index.ts",
   "legacyWatch": true,
   "verbose": true
 }
