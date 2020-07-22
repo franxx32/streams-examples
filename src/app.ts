@@ -23,7 +23,6 @@ export class App {
 
   private routes() {
     this.app.get('/ping', (req, res) => {
-      throw new Error('ZZZ');
       res.send('pong');
     });
     this.app.use('/services', this.serviceRouter.router);
